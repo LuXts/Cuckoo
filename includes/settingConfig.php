@@ -12,7 +12,7 @@
  * 
  * @author Bhao
  * @link https://dwd.moe/
- * @version 1.0.0
+ * @version 1.0.1
  */
 
 if (!defined('__TYPECHO_ROOT_DIR__')) exit;
@@ -20,23 +20,23 @@ if (!defined('__TYPECHO_ROOT_DIR__')) exit;
 class Cuckoo_Setting
 {
 
-	private $form;
-	private $security;
+  private $form;
+  private $security;
 
-	public function __construct($form)
-	{
-		$this->form = $form;
-		Typecho_Widget::widget('Widget_Security')->to($security);
-		$this->security = $security;
-	}
+  public function __construct($form)
+  {
+    $this->form = $form;
+    Typecho_Widget::widget('Widget_Security')->to($security);
+    $this->security = $security;
+  }
 
-	public function themePanel()
-	{
-		echo '<link rel="stylesheet" href="' . staticFiles('assets/css/mdui.css', 1) . '" />';
-		echo '<script src="' . staticFiles('assets/js/mdui.js', 1) . '"></script>' .
-			'<link rel="stylesheet" href="' . staticFiles('assets/css/setting.css', 1) . '" />' .
-			'<script src="' . staticFiles('assets/js/jquery.js', 1) . '"></script>' .
-			'<script>
+  public function themePanel()
+  {
+    echo '<link rel="stylesheet" href="' . staticFiles('assets/css/mdui.min.css', 1) . '" />';
+    echo '<script src="' . staticFiles('assets/js/mdui.min.js', 1) . '"></script>' .
+      '<link rel="stylesheet" href="' . staticFiles('assets/css/setting.min.css', 1) . '" />' .
+      '<script src="' . staticFiles('assets/js/jquery.min.js', 1) . '"></script>' .
+      '<script>
       mdui.JQ("body").addClass("mdui-theme-primary-pink");
       $(function () {  
         $.ajax({  
@@ -60,7 +60,7 @@ class Cuckoo_Setting
       </script>';
 
 
-		$string = '<div class="backgroud"></div>
+    $string = '<div class="backgroud"></div>
     <div class="mdui-appbar mdui-shadow-0">
     <div class="mdui-toolbar">
       <a class="mdui-btn mdui-btn-icon" mdui-drawer="{target: \'#drawer\', swipe: \'true\', overlay: \'false\'}"><i class="mdui-icon material-icons">menu</i></a>
@@ -71,9 +71,9 @@ class Cuckoo_Setting
     </div>
   </div>';
 
-		$string .= '<div class="setting-container">';
+    $string .= '<div class="setting-container">';
 
-		$string .= '
+    $string .= '
     <div class="mdui-card">
       <div class="mdui-card-media index-card">
         <div class="mdui-card-media-covered">
@@ -111,120 +111,120 @@ class Cuckoo_Setting
         </tbody>
       </table>
     </div>';
-		$string .= '';
-		echo $string;
-	}
+    $string .= '';
+    echo $string;
+  }
 
-	public function form($content = "")
-	{
-		echo '<form class="mdui-typo" action="' . $this->security->getIndex('/action/themes-edit?config') . '" method="post" enctype="application/x-www-form-urlencoded" style="display: block!important">
+  public function form($content = "")
+  {
+    echo '<form class="mdui-typo" action="' . $this->security->getIndex('/action/themes-edit?config') . '" method="post" enctype="application/x-www-form-urlencoded" style="display: block!important">
             <div class="setting-form">
               <div class="mdui-tab mdui-tab-full-width" mdui-tab>
                 <a href="#setting-1" class="mdui-ripple">基础设置</a>
                 <a href="#setting-2" class="mdui-ripple">功能</a>
                 <a href="#setting-3" class="mdui-ripple">独立页面</a>
               </div>';
-		echo $content;
-		echo '</div><button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">save</i></button>';
-		echo '</form></div><footer class="footer"><p>&copy; ' . date("Y") . ' <a href="' . Helper::options()->siteUrl . '">' . Helper::options()->title . '</a><br><br>Theme <a href="">Cuckoo</a> by <a href="https://dwd.moe/">Bhao</a>｜Powered By <a href="http://www.typecho.org">Typecho</a></p></footer>';
-	}
+    echo $content;
+    echo '</div><button class="mdui-fab mdui-fab-fixed mdui-ripple mdui-color-theme"><i class="mdui-icon material-icons">save</i></button>';
+    echo '</form></div><footer class="footer"><p>&copy; '.date("Y").' <a href="'.Helper::options()->siteUrl.'">'.Helper::options()->title.'</a><br><br>Theme <a href="">Cuckoo</a> by <a href="https://dwd.moe/">Bhao</a>｜Powered By <a href="http://www.typecho.org">Typecho</a></p></footer>';
+  }
 
-	public function module($content = "", $type = "")
-	{
-		return '<div id="setting-' . $type . '" class="mdui-p-a-2">' . $content . '</div>';
-	}
+  public function module($content = "", $type = "")
+  {
+    return '<div id="setting-' . $type . '" class="mdui-p-a-2">' . $content . '</div>';
+  }
 
-	public function text($content = "")
-	{
-		return $content;
-	}
+  public function text($content = "")
+  {
+    return $content;
+  }
 
-	public function input($name, $display = NULL, $description = NULL, $default = NULL, $desType = NULL)
-	{
-		$string = '';
-		if ($desType === true) {
-			$description = $description . '<br/>';
-		} else {
-			$description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
-		}
-		$userOption = themeOptions($name);
-		$string .= '<div class="mdui-textfield">';
-		$string .= '<label class="mdui-textfield-label">' . $display . '</label>';
-		$string .= '<input class="mdui-textfield-input" type="text" name="' . $name . '" value="' . htmlspecialchars($userOption) . '" />';
-		$string .= $description;
-		$string .= '</div>';
+  public function input($name, $display = NULL, $description = NULL, $default = NULL, $desType = NULL)
+  {
+    $string = '';
+    if ($desType === true) {
+      $description = $description . '<br/>';
+    } else {
+      $description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
+    }
+    $userOption = themeOptions($name);
+    $string .= '<div class="mdui-textfield">';
+    $string .= '<label class="mdui-textfield-label">' . $display . '</label>';
+    $string .= '<input class="mdui-textfield-input" type="text" name="' . $name . '" value="' . htmlspecialchars($userOption) . '" />';
+    $string .= $description;
+    $string .= '</div>';
 
-		$$name = new Typecho_Widget_Helper_Form_Element_Text($name, NULL, $default, $display, $description);
-		$this->form->addInput($$name);
-		return $string;
-	}
+    $$name = new Typecho_Widget_Helper_Form_Element_Text($name, NULL, $default, $display, $description);
+    $this->form->addInput($$name);
+    return $string;
+  }
 
-	public function select($name, $display = NULL, $description = NULL, $options, $default = NULL, $desType = NULL)
-	{
-		$string = '';
-		if ($desType === true) {
-			$description = $description . '<br/>';
-		} else {
-			$description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
-		}
-		$userOption = themeOptions($name);
-		if ($userOption === NULL) {
-			$userOption = $default;
-		}
-		$string .= '<div class="mdui-textfield">';
-		$string .= '<label class="mdui-textfield-label">' . $display . '</label>';
-		$string .= '</div>';
-		$string .= '<select class="mdui-select" name="' . $name . '" mdui-select="{position: \'bottom\'}">';
-		foreach ($options as $id => $value) {
-			$check = ($id == $userOption) ? ' selected="true"' : NULL;
-			$string .= '<option value="' . $id . '"' . $check . '>' . $value . '</option>';
-		}
-		$string .= "</select>";
-		$string .= '<div class="mdui-textfield">';
-		$string .= $description;
-		$string .= '</div>';
-		$$name = new Typecho_Widget_Helper_Form_Element_Select($name, $options, $default, _t($display), _t($description));
-		$this->form->addInput($$name);
-		return $string;
-	}
+  public function select($name, $display = NULL, $description = NULL, $options, $default = NULL, $desType = NULL)
+  {
+    $string = '';
+    if ($desType === true) {
+      $description = $description . '<br/>';
+    } else {
+      $description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
+    }
+    $userOption = themeOptions($name);
+    if ($userOption === NULL) {
+      $userOption = $default;
+    }
+    $string .= '<div class="mdui-textfield">';
+    $string .= '<label class="mdui-textfield-label">' . $display . '</label>';
+    $string .= '</div>';
+    $string .= '<select class="mdui-select" name="' . $name . '" mdui-select="{position: \'bottom\'}">';
+    foreach ($options as $id => $value) {
+      $check = ($id == $userOption) ? ' selected="true"' : NULL;
+      $string .= '<option value="' . $id . '"' . $check . '>' . $value . '</option>';
+    }
+    $string .= "</select>";
+    $string .= '<div class="mdui-textfield">';
+    $string .= $description;
+    $string .= '</div>';
+    $$name = new Typecho_Widget_Helper_Form_Element_Select($name, $options, $default, _t($display), _t($description));
+    $this->form->addInput($$name);
+    return $string;
+  }
 
-	public function checkbox($name, $display = NULL, $description = NULL, $options, $default = NULL)
-	{
-		$string = "";
-		$userOptions = themeOptions($name);
-		$string .= '<ul style="list-style: none!important;padding:0">';
-		foreach ($options as $option => $value) {
-			$checked = "";
-			if ($userOptions !== null && in_array($option, $userOptions)) $checked = "checked";
-			$string .= '<li><label class="mdui-checkbox"><input type="checkbox" name="' . $name . '[]" value="' . $option . '" ' . $checked . '/><i class="mdui-checkbox-icon"></i>' . $value . '</label></li>';
-		}
-		$string .= "</ul>";
-		$$name = new Typecho_Widget_Helper_Form_Element_Checkbox($name, $options, $default, _t($display), _t($description));
-		$this->form->addInput($$name->multiMode());
-		return $string;
-	}
+  public function checkbox($name, $display = NULL, $description = NULL, $options, $default = NULL)
+  {
+    $string = "";
+    $userOptions = themeOptions($name);
+    $string .= '<ul style="list-style: none!important;padding:0">';
+    foreach ($options as $option => $value) {
+      $checked = "";
+      if ($userOptions !== null && in_array($option, $userOptions)) $checked = "checked";
+      $string .= '<li><label class="mdui-checkbox"><input type="checkbox" name="' . $name . '[]" value="' . $option . '" ' . $checked . '/><i class="mdui-checkbox-icon"></i>' . $value . '</label></li>';
+    }
+    $string .= "</ul>";
+    $$name = new Typecho_Widget_Helper_Form_Element_Checkbox($name, $options, $default, _t($display), _t($description));
+    $this->form->addInput($$name->multiMode());
+    return $string;
+  }
 
-	public function textarea($name, $display = NULL, $description = NULL, $default = NULL, $rows = NULL)
-	{
-		$string = "";
-		$rows = ($rows) ? ' rows="' . $rows . '" ' : NULL;
-		$userOption = themeOptions($name);
-		$description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
-		$floatingLabel = ($userOption == "") ? " mdui-textfield-floating-label" : NULL;
-		$string .= '<div class="mdui-textfield"><label class="mdui-textfield-label">' . $display . '</label><textarea class="mdui-textfield-input" type="text" name="' . $name . '"' . $rows . '/>' . htmlspecialchars($userOption) . '</textarea>' . $description . '</div>';
-		$$name = new Typecho_Widget_Helper_Form_Element_Textarea($name, null, _t($default), _t($display), _t($description));
-		$this->form->addInput($$name);
-		return $string;
-	}
+  public function textarea($name, $display = NULL, $description = NULL, $default = NULL, $rows = NULL)
+  {
+    $string = "";
+    $rows = ($rows) ? ' rows="' . $rows . '" ' : NULL;
+    $userOption = themeOptions($name);
+    $description = ($description) ? '<div class="mdui-textfield-helper">' . $description . '</div>' : NULL;
+    $floatingLabel = ($userOption == "") ? " mdui-textfield-floating-label" : NULL;
+    $string .= '<div class="mdui-textfield"><label class="mdui-textfield-label">' . $display . '</label><textarea class="mdui-textfield-input" type="text" name="' . $name . '"' . $rows . '/>' . htmlspecialchars($userOption) . '</textarea>' . $description . '</div>';
+    $$name = new Typecho_Widget_Helper_Form_Element_Textarea($name, null, _t($default), _t($display), _t($description));
+    $this->form->addInput($$name);
+    return $string;
+  }
 
-	public function isPluginAvailable($name)
-	{
-		$plugins = Typecho_Plugin::export();
-		$plugins = $plugins['activated'];
-		if (array_key_exists($name, $plugins)) {
-			return '<p class="setting-normal">检测到您已经安装“' . $name . '”插件 请仔细填写好下面的内容哦～</p>';
-		} else {
-			return '<p class="setting-error">检测到您还未安装“' . $name . '”插件 请 <a href="//www.imhan.com/archives/typecho_links_20141214">点击此处进行下载</a> 否则将无法正常运行友链功能</p>';
-		}
-	}
+  public function isPluginAvailable($name)
+  {
+    $plugins = Typecho_Plugin::export();
+    $plugins = $plugins['activated'];
+    if(array_key_exists($name, $plugins)){
+      return '<p class="setting-normal">检测到您已经安装“'.$name.'”插件 请仔细填写好下面的内容哦～</p>';
+    }else{
+      return '<p class="setting-error">检测到您还未安装“'.$name.'”插件 请 <a href="//www.imhan.com/archives/typecho_links_20141214/">点击此处进行下载</a> 否则将无法正常运行友链功能</p>';
+    }
+  }
 }

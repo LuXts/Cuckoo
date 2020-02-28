@@ -10,7 +10,7 @@
  * 
  * @author Bhao
  * @link https://dwd.moe/
- * @version 1.0.0
+ * @version 1.0.1
  */
 .mdui-textfield-expandable.mdui-textfield-expanded {
   width: 25%;
@@ -106,10 +106,6 @@ body {
 }
 .is-active-link {
   font-weight: 700;
-  color: #ff4081 !important;
-}
-.is-active-link::before {
-  background-color: #ff4081 !important;
 }
 .toc-list {
   line-height: 2.25;
@@ -329,6 +325,9 @@ a.toc-link {
 .mdui-typo pre code {
   color: #abb2bf;
 }
+.mdui-typo ol {
+  padding-left: 40px;
+}
 .mdui-card-header-subtitle p {
   margin: 0px;
 }
@@ -536,6 +535,9 @@ a.toc-link {
 }
 .links-comments {
   padding: 20px;
+  width: 100%;
+}
+.links-comment-list {
   width: 100%;
 }
 .links-content {

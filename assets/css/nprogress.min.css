@@ -1,3 +1,17 @@
+/**
+ * .______    __    __       ___        ______
+ * |   _  \  |  |  |  |     /   \      /  __  \
+ * |  |_)  | |  |__|  |    /  ^  \    |  |  |  |
+ * |   _  <  |   __   |   /  /_\  \   |  |  |  |
+ * |  |_)  | |  |  |  |  /  _____  \  |  `--'  |
+ * |______/  |__|  |__| /__/     \__\  \______/
+ * 
+ * Nprogress
+ * 
+ * @author Bhao
+ * @link https://dwd.moe/
+ * @version 1.0.1
+ */
 #nprogress {
   pointer-events: none;
 }
@@ -11,7 +25,6 @@
   height: 4px;
 }
 #nprogress .bar {
-  background-color: #ff4081 !important;
   position: fixed;
   z-index: 1031;
   top: 0;
